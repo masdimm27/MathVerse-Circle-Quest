@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Modul Belajar Matematika Geometri Lingkaran SMA — MathVerse Circle Quest: Pelajari 8 bab esensial unsur lingkaran, panjang busur, luas juring, sudut keliling, GSPL, dan GSPD.">
+  <meta name="keywords" content="belajar geometri lingkaran, rumus lingkaran sma, luas juring tembereng, sudut keliling pusat, garis singgung persekutuan luar dalam, mathverse">
+  <meta name="author" content="MathVerse Team">
+  <meta name="theme-color" content="#0A0F1D">
+  
+  <title>Belajar Materi Geometri Lingkaran | MathVerse — Circle Quest</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet Utama -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="learning-module-page">
+  <!-- Aksesibilitas: Skip Link ke Konten Pembelajaran -->
+  <a href="#learning-main" class="skip-link">Lompat ke Konten Pembelajaran</a>
+
+  <!-- ==========================================
+       HEADER & NAVIGATION
+       ========================================== -->
+  <header class="site-header" id="site-header">
+    <div class="container navbar">
+      <!-- Logo Brand MathVerse (Link ke index.html) -->
+      <a href="index.html" class="brand-link" aria-label="MathVerse Beranda">
+        <div class="brand-logo-mark" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"></circle>
+            <circle cx="12" cy="12" r="2" fill="currentColor"></circle>
+            <path d="M12 12L18 6"></path>
+            <path d="M16 2L22 8"></path>
+          </svg>
+        </div>
+        <div class="brand-text-group">
+          <span class="brand-name">MathVerse</span>
+          <span class="brand-mode-badge">Circle Quest</span>
+        </div>
+      </a>
+
+      <!-- Link Navigasi Utama -->
+      <nav aria-label="Navigasi Utama">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html" class="nav-link">Beranda</a></li>
+          <li><a href="materi.html" class="nav-link active">Materi Geometri</a></li>
+          <li><a href="index.html#challenges" class="nav-link">Mode Tantangan</a></li>
+          <li><a href="index.html#leaderboard" class="nav-link">Peringkat</a></li>
+          <li><a href="index.html#stats" class="nav-link">Statistik</a></li>
+        </ul>
+      </nav>
+
+      <!-- Aksi Navigasi (Theme Switcher & Mobile Menu) -->
+      <div class="nav-actions">
+        <!-- Toggle Tema Terang/Gelap -->
+        <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Ganti mode tampilan tema" title="Ganti mode tampilan">
+          <!-- Ikon Bulan (Tampil saat mode gelap) -->
+          <svg class="theme-icon-light" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+          <!-- Ikon Matahari (Tampil saat mode terang) -->
+          <svg class="theme-icon-dark" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+        </button>
+
+        <!-- Toggle Menu Mobile -->
+        <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Buka navigasi menu" aria-expanded="false" aria-controls="nav-links">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="4" x2="20" y1="12" y2="12"></line>
+            <line x1="4" x2="20" y1="6" y2="6"></line>
+            <line x1="4" x2="20" y1="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       MAIN CONTENT: LEARNING HUB
+       ========================================== -->
+  <main class="learning-main-wrapper" id="learning-main">
+    <div class="container">
+      
+      <!-- Top Bar: Breadcrumb & Learning Progress Card -->
+      <section class="learning-top-bar" aria-label="Status Progres Pembelajaran">
+        <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+          <a href="index.html" class="breadcrumb-link">Beranda</a>
+          <span class="breadcrumb-separator" aria-hidden="true">/</span>
+          <a href="materi.html" class="breadcrumb-link">Materi Geometri</a>
+          <span class="breadcrumb-separator" aria-hidden="true">/</span>
+          <span class="breadcrumb-current" id="breadcrumb-current-bab">Bab 01: Unsur-unsur Lingkaran</span>
+        </nav>
+
+        <!-- Kartu Indikator Progres Belajar Global -->
+        <div class="global-progress-card">
+          <div class="progress-card-info">
+            <div class="progress-icon-badge" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <div>
+              <div class="progress-card-title">Capaian Belajar Mandiri</div>
+              <div class="progress-card-desc">Selesaikan seluruh 8 bab materi untuk menuntaskan kurikulum lingkaran SMA!</div>
+            </div>
+          </div>
+
+          <div class="progress-tracker-group">
+            <div class="progress-meta-row">
+              <span class="progress-count-text">Terselesaikan: <strong id="progress-count">0</strong> dari 8 Bab</span>
+              <span class="progress-percentage-pill" id="progress-percent">0%</span>
+            </div>
+            <div class="progress-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Persentase penyelesaian bab">
+              <div class="progress-fill" id="progress-bar-fill" style="width: 0%;"></div>
+            </div>
+            <div class="progress-action-row">
+              <button id="btn-reset-progress" class="btn-text-subtle" title="Setel ulang catatan penyelesaian bab">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+                <span>Reset Progres</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Layout Dua Kolom: Sidebar Bab & Konten Pembelajaran -->
+      <div class="learning-layout-grid">
+        
+        <!-- SIDEBAR: DAFTAR 8 BAB PEMBELAJARAN -->
+        <aside class="learning-sidebar" aria-label="Daftar Bab Geometri">
+          <div class="sidebar-header">
+            <h3 class="sidebar-title">Modul Pembelajaran</h3>
+            <span class="badge-pill">Fase F (SMA)</span>
+          </div>
+
+          <div class="sidebar-chapter-list" id="sidebar-chapter-list" role="tablist" aria-label="Pilih Bab Pembelajaran">
+            <!-- Diisi secara dinamis oleh js/materi.js -->
+          </div>
+
+          <!-- Banner pintasan ke kuis tantangan -->
+          <div class="sidebar-quest-shortcut">
+            <div class="shortcut-icon" aria-hidden="true">🎯</div>
+            <div class="shortcut-text">
+              <strong>Siap Uji Pemahaman?</strong>
+              <p>Coba latihan soal acak pada mode kuis interaktif.</p>
+            </div>
+            <a href="index.html#challenges" class="btn btn-secondary btn-sm" style="width: 100%;">Ke Mode Tantangan</a>
+          </div>
+        </aside>
+
+        <!-- KONTEN UTAMA BAB AKTIF -->
+        <article class="learning-main-content" id="chapter-content-container" role="tabpanel" aria-live="polite">
+          <!-- Diisi secara dinamis oleh js/materi.js sesuai bab terpilih -->
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-link" style="margin-bottom: 8px;">
+            <div class="brand-logo-mark" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="12" r="9"></circle>
+                <circle cx="12" cy="12" r="2" fill="currentColor"></circle>
+                <path d="M12 12L18 6"></path>
+              </svg>
+            </div>
+            <div class="brand-text-group">
+              <span class="brand-name">MathVerse</span>
+              <span class="brand-mode-badge">Circle Quest</span>
+            </div>
+          </div>
+          <p class="footer-brand-desc">
+            Platform edukasi geometri lingkaran interaktif yang dirancang untuk membantu pelajar SMA memahami konsep matematika secara visual, intuitif, dan terstruktur.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Navigasi Modul</h4>
+          <ul class="footer-links">
+            <li><a href="materi.html?bab=1" class="footer-link">Bab 1: Unsur-unsur Lingkaran</a></li>
+            <li><a href="materi.html?bab=2" class="footer-link">Bab 2: Keliling & Panjang Busur</a></li>
+            <li><a href="materi.html?bab=3" class="footer-link">Bab 3: Luas Juring & Tembereng</a></li>
+            <li><a href="materi.html?bab=4" class="footer-link">Bab 4: Sudut Pusat & Keliling</a></li>
+            <li><a href="materi.html?bab=6" class="footer-link">Bab 6 & 7: Garis Singgung (GSPL & GSPD)</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Informasi Proyek</h4>
+          <ul class="footer-links">
+            <li><span style="color: var(--text-muted);">Proyek: Penilaian Matematika SMA</span></li>
+            <li><span style="color: var(--text-muted);">Kurikulum: Fase F (Kelas XI)</span></li>
+            <li><span style="color: var(--text-muted);">Versi: v0.2.0 — Modul Belajar Lengkap</span></li>
+            <li><a href="#learning-main" class="footer-link">Kembali ke Atas ↑</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 MathVerse — Circle Quest. Dibuat untuk Proyek Penilaian Pembelajaran Matematika.</span>
+        <span>HTML5 • CSS3 • JavaScript ES6+ (Pure / Vanilla)</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts Modular -->
+  <script src="js/geometry.js"></script>
+  <script src="js/questions.js"></script>
+  <script src="js/materi.js"></script>
+</body>
+</html>

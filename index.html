@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MathVerse — Circle Quest: Platform edukasi geometri lingkaran interaktif tingkat SMA. Pelajari unsur, luas juring, sudut pusat/keliling, dan garis singgung persekutuan.">
+  <meta name="keywords" content="matematika SMA, lingkaran, geometri, luas juring, garis singgung persekutuan, sudut keliling, circle quest, mathverse">
+  <meta name="author" content="MathVerse Team">
+  <meta name="theme-color" content="#0A0F1D">
+  
+  <title>MathVerse — Circle Quest | Platform Belajar Geometri Lingkaran</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet Utama -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Aksesibilitas: Skip Link ke Konten Utama -->
+  <a href="#main-content" class="skip-link">Lompat ke Konten Utama</a>
+
+  <!-- ==========================================
+       HEADER & NAVIGATION
+       ========================================== -->
+  <header class="site-header" id="site-header">
+    <div class="container navbar">
+      <!-- Logo Brand -->
+      <a href="#" class="brand-link" aria-label="MathVerse Beranda">
+        <div class="brand-logo-mark" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"></circle>
+            <circle cx="12" cy="12" r="2" fill="currentColor"></circle>
+            <path d="M12 12L18 6"></path>
+            <path d="M16 2L22 8"></path>
+          </svg>
+        </div>
+        <div class="brand-text-group">
+          <span class="brand-name">MathVerse</span>
+          <span class="brand-mode-badge">Circle Quest</span>
+        </div>
+      </a>
+
+      <!-- Link Navigasi Utama -->
+      <nav aria-label="Navigasi Utama">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#hero" class="nav-link active">Beranda</a></li>
+          <li><a href="materi.html" class="nav-link">Materi Geometri</a></li>
+          <li><a href="#challenges" class="nav-link">Mode Tantangan</a></li>
+          <li><a href="#leaderboard" class="nav-link">Peringkat</a></li>
+          <li><a href="#stats" class="nav-link">Statistik</a></li>
+        </ul>
+      </nav>
+
+      <!-- Aksi Navigasi (Theme Switcher & Mobile Menu) -->
+      <div class="nav-actions">
+        <!-- Toggle Tema Terang/Gelap -->
+        <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Ganti mode tampilan tema" title="Ganti mode tampilan">
+          <!-- Ikon Bulan (Tampil saat mode gelap) -->
+          <svg class="theme-icon-light" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+          <!-- Ikon Matahari (Tampil saat mode terang) -->
+          <svg class="theme-icon-dark" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+        </button>
+
+        <!-- Toggle Menu Mobile -->
+        <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Buka navigasi menu" aria-expanded="false" aria-controls="nav-links">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="4" x2="20" y1="12" y2="12"></line>
+            <line x1="4" x2="20" y1="6" y2="6"></line>
+            <line x1="4" x2="20" y1="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       MAIN CONTENT
+       ========================================== -->
+  <main id="main-content">
+    
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="hero-ambient-glow" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <!-- Kolom Teks Hero -->
+        <div class="hero-content">
+          <div class="hero-tagline-badge">
+            <span class="badge-pill badge-pill-cyan">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              Platform Belajar Geometri SMA — Fase F
+            </span>
+          </div>
+
+          <h1 class="hero-title">
+            Explore the Geometry of <span class="gradient-text">Circles</span>
+          </h1>
+
+          <p class="hero-tagline">Learn the Concepts, Master the Challenge.</p>
+
+          <p class="hero-description">
+            Kuasai konsep esensial lingkaran dengan cara interaktif dan visual: mulai dari unsur-unsur dasar, sudut pusat dan keliling, luas juring dan tembereng, hingga garis singgung persekutuan luar dan dalam.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="materi.html" class="btn btn-primary" id="btn-explore-topics">
+              <span>Pelajari Materi</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </a>
+            <a href="#challenges" class="btn btn-secondary" id="btn-start-challenge">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              <span>Mulai Tantangan</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Kolom Visual Hero Interaktif -->
+        <div class="hero-visual-card">
+          <div class="hero-visual-header">
+            <span class="hero-visual-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              Diagram Anatomi Lingkaran Interaktif
+            </span>
+            <span class="badge-pill">Inspeksi Elemen</span>
+          </div>
+
+          <div class="hero-circle-svg-container" id="hero-circle-container">
+            <!-- Diagram Geometri SVG Interaktif -->
+            <svg class="hero-circle-svg" viewBox="0 0 360 360" role="img" aria-label="Diagram Anatomi Lingkaran Interaktif">
+              <defs>
+                <!-- Gradasi Juring -->
+                <linearGradient id="sectorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.45"/>
+                  <stop offset="100%" stop-color="#7C3AED" stop-opacity="0.15"/>
+                </linearGradient>
+                <radialGradient id="centerGrad">
+                  <stop offset="0%" stop-color="#06B6D4"/>
+                  <stop offset="100%" stop-color="#0284C7"/>
+                </radialGradient>
+              </defs>
+
+              <!-- Grid background melingkar halus -->
+              <circle cx="180" cy="180" r="160" fill="none" stroke="currentColor" stroke-opacity="0.05" stroke-dasharray="4 4"/>
+              <circle cx="180" cy="180" r="120" fill="none" stroke="currentColor" stroke-opacity="0.08"/>
+
+              <!-- JURING (SECTOR) 0° s/d 60° -->
+              <path id="geom-sector" class="geom-interactive-part" d="M 180 180 L 300 180 A 120 120 0 0 0 240 76 Z" 
+                    fill="url(#sectorGrad)" stroke="#8B5CF6" stroke-width="1.5"
+                    data-name="Juring Lingkaran" data-desc="Daerah bidang lingkaran yang dibatasi oleh dua jari-jari dan satu busur lingkaran."/>
+
+              <!-- TALI BUSUR & TEMBERENG -->
+              <line id="geom-chord" class="geom-interactive-part" x1="300" y1="180" x2="240" y2="76" 
+                    stroke="#10B981" stroke-width="2.5" stroke-dasharray="3 3"
+                    data-name="Tali Busur" data-desc="Ruas garis lurus yang menghubungkan dua titik pada lingkaran (membatasi tembereng)."/>
+
+              <!-- LINGKARAN UTAMA -->
+              <circle cx="180" cy="180" r="120" fill="none" stroke="currentColor" stroke-opacity="0.25" stroke-width="2"/>
+
+              <!-- DIAMETER (GARIS LURUS PENUH) -->
+              <line id="geom-diameter" class="geom-interactive-part" x1="60" y1="180" x2="300" y2="180" 
+                    stroke="#F59E0B" stroke-width="2.5"
+                    data-name="Diameter (Garis Tengah)" data-desc="Tali busur terpanjang yang melewati titik pusat lingkaran, bernilai d = 2r."/>
+
+              <!-- JARI-JARI (RADIUS) r -->
+              <line id="geom-radius" class="geom-interactive-part" x1="180" y1="180" x2="240" y2="76" 
+                    stroke="#06B6D4" stroke-width="3" stroke-linecap="round"
+                    data-name="Jari-Jari (r)" data-desc="Ruas garis yang menghubungkan titik pusat lingkaran dengan satu titik pada keliling lingkaran."/>
+
+              <!-- GARIS SINGGUNG (TANGENT) DI TITIK (240, 76) -->
+              <!-- Titik singgung berada di (180 + 120*cos(-60°), 180 + 120*sin(-60°)) = (240, 76.08) -->
+              <!-- Vektor tegak lurus: gradien normal = -sqrt(3), gradien garis singgung = 1/sqrt(3) -->
+              <line id="geom-tangent" class="geom-interactive-part" x1="160" y1="30" x2="320" y2="122" 
+                    stroke="#EC4899" stroke-width="2.5" stroke-linecap="round"
+                    data-name="Garis Singgung Lingkaran" data-desc="Garis lurus yang menyentuh lingkaran tepat di 1 titik dan selalu tegak lurus (90°) dengan jari-jari di titik singgung."/>
+
+              <!-- Indikator Siku-Siku (Right Angle Marker) pada Titik Singgung -->
+              <path d="M 234 65.5 L 242 61 L 248 71.5" fill="none" stroke="#EC4899" stroke-width="1.5"/>
+
+              <!-- TITIK PUSAT (CENTER) -->
+              <circle id="geom-center" class="geom-interactive-part" cx="180" cy="180" r="6" fill="url(#centerGrad)" stroke="#FFFFFF" stroke-width="2"
+                      data-name="Titik Pusat (O)" data-desc="Titik yang berjarak tepat sama ke seluruh titik pada tepi lingkaran."/>
+              <text x="174" y="202" fill="currentColor" font-size="12" font-weight="700" opacity="0.8">O</text>
+
+              <!-- LABEL TITIK SINGGUNG -->
+              <circle cx="240" cy="76" r="4.5" fill="#EC4899" stroke="#FFFFFF" stroke-width="1.5"/>
+              <text x="248" y="70" fill="#EC4899" font-size="12" font-weight="700">T (Titik Singgung)</text>
+            </svg>
+          </div>
+
+          <!-- Keterangan Interaktif / Tooltip Box -->
+          <div class="hero-inspection-box" id="hero-inspection-box">
+            <span>Arahkan kursor atau sentuh elemen geometri di atas untuk melihat penjelasannya.</span>
+          </div>
+
+          <!-- Chip Legend Interaktif -->
+          <div class="hero-visual-legend" role="toolbar" aria-label="Filter Elemen Lingkaran">
+            <button class="legend-chip" data-target="geom-radius">
+              <span class="legend-color-dot dot-radius"></span> Jari-jari (r)
+            </button>
+            <button class="legend-chip" data-target="geom-diameter">
+              <span class="legend-color-dot dot-diameter"></span> Diameter (d)
+            </button>
+            <button class="legend-chip" data-target="geom-tangent">
+              <span class="legend-color-dot dot-tangent"></span> Garis Singgung
+            </button>
+            <button class="legend-chip" data-target="geom-sector">
+              <span class="legend-color-dot dot-sector"></span> Juring
+            </button>
+            <button class="legend-chip" data-target="geom-chord">
+              <span class="legend-color-dot dot-chord"></span> Tali Busur
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS & HIGHLIGHTS SECTION -->
+    <section class="stats-section" id="stats" aria-label="Statistik Platform">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
+                <path d="M6 6h10"></path>
+                <path d="M6 10h10"></path>
+              </svg>
+            </div>
+            <span class="stat-number">8 Modul</span>
+            <span class="stat-label">Kurikulum Geometri</span>
+            <span class="stat-description">Disusun lengkap sesuai silabus matematika SMA Fase F.</span>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="m9 12 2 2 4-4"></path>
+              </svg>
+            </div>
+            <span class="stat-number">50+ Tantangan</span>
+            <span class="stat-label">Latihan Soal Bertingkat</span>
+            <span class="stat-description">Dari tingkat pemahaman dasar hingga aplikasi tingkat tinggi.</span>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            </div>
+            <span class="stat-number">100% Visual</span>
+            <span class="stat-label">Interaktif & Eksploratif</span>
+            <span class="stat-description">Ilustrasi vektor presisi dan kalkulasi matematis real-time.</span>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                <path d="M4 22h16"></path>
+                <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+                <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+                <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+              </svg>
+            </div>
+            <span class="stat-number">Circle Quest</span>
+            <span class="stat-label">Gamifikasi Pembelajaran</span>
+            <span class="stat-description">Sistem perolehan XP dan pemantauan capaian prestasi siswa.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MATERI GEOMETRI SECTION (8 TOPICS) -->
+    <section class="section" id="topics">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">
+            <span class="badge-pill">Modul Pembelajaran</span>
+          </div>
+          <h2 class="section-title">Kurikulum & Modul Geometri Lingkaran</h2>
+          <p class="section-subtitle">
+            Pelajari konsep-konsep matematika lingkaran secara terstruktur. Pilih salah satu modul di bawah ini untuk melihat pratinjau rumus, visualisasi, dan ringkasan teorinya.
+          </p>
+        </div>
+
+        <!-- Filter Bar Kategori -->
+        <div class="filter-bar" role="tablist" aria-label="Filter Topik Materi">
+          <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">Semua Modul (8)</button>
+          <button class="filter-btn" data-filter="dasar" role="tab" aria-selected="false">Konsep Dasar</button>
+          <button class="filter-btn" data-filter="sudut-luas" role="tab" aria-selected="false">Sudut & Luas</button>
+          <button class="filter-btn" data-filter="garis-singgung" role="tab" aria-selected="false">Garis Singgung</button>
+        </div>
+
+        <!-- Grid 8 Topik Materi -->
+        <div class="topics-grid" id="topics-grid">
+          
+          <!-- Topik 1: Unsur-unsur Lingkaran -->
+          <article class="topic-card" data-category="dasar" data-topic-id="unsur_lingkaran">
+            <div class="topic-card-top">
+              <span class="topic-number">Topik 01</span>
+              <span class="topic-level-badge">Tingkat Dasar</span>
+            </div>
+            <div class="topic-diagram-box">
+              <svg viewBox="0 0 180 120" width="160" height="100" aria-label="Diagram Unsur Lingkaran">
+                <circle cx="90" cy="60" r="45" fill="none" stroke="currentColor" stroke-opacity="0.2" stroke-width="2"/>
+                <line x1="90" y1="60" x2="135" y2="60" stroke="#06B6D4" stroke-width="2"/>
+                <line x1="90" y1="60" x2="90" y2="15" stroke="#F59E0B" stroke-width="2"/>
+                <line x1="90" y1="60" x2="65" y2="98" stroke="#10B981" stroke-width="2"/>
+                <circle cx="90" cy="60" r="4" fill="#8B5CF6"/>
+                <text x="105" y="55" fill="#06B6D4" font-size="11" font-weight="700">r</text>
+                <text x="74" y="40" fill="#F59E0B" font-size="11" font-weight="700">apotema</text>
+              </svg>
+            </div>
+            <h3 class="topic-title">Unsur-unsur Lingkaran</h3>
+            <p class="topic-desc">Mengenal titik pusat, jari-jari, diameter, busur, tali busur, tembereng, juring, dan apotema beserta sifat-sifatnya.</p>
+            <div class="topic-formula-pill">d = 2r | Unsur Geometri</div>
+            <div class="topic-footer">
+              <button class="topic-btn" data-action="explore" data-topic="unsur_lingkaran">
+                <span>Eksplorasi Konsep</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            </div>
+          </article>
+
+          <!-- Topik 2: Keliling dan Panjang Busur -->
+          <article class="topic-card" data-category="sudut-luas" data-topic-id="keliling_busur">
+            <div class="topic-card-top">
+              <span class="topic-number">Topik 02</span>
+              <span class="topic-level-badge">Tingkat Dasar</span>
+            </div>
+            <div class="topic-diagram-box">
+              <svg viewBox="0 0 180 120" width="160" height="100" aria-label="Diagram Keliling dan Busur">
+                <circle cx="90" cy="60" r="45" fill="none" stroke="currentColor" stroke-opacity="0.2" stroke-width="2"/>
+                <!-- Busur berwana cerah -->
+                <path d="M 135 60 A 45 45 0 0 0 90 15" fill="none" stroke="#22D3EE" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="90" cy="60" r="3" fill="#8B5CF6"/>
+                <line x1="90" y1="60" x2="135" y2="60" stroke="#64748B" stroke-dasharray="2 2"/>
+                <line x1="90" y1="60" x2="90" y2="15" stroke="#64748B" stroke-dasharray="2 2"/>
+                <text x="118" y="32" fill="#22D3EE" font-size="12" font-weight="700">Busur s</text>
+              </svg>
+            </div>
+            <h3 class="topic-title">Keliling & Panjang Busur</h3>
+            <p class="topic-desc">Perhitungan keliling lingkaran penuh serta proporsi panjang busur lingkaran berdasarkan besar sudut pusat.</p>
+            <div class="topic-formula-pill">s = (α/360°) × 2πr</div>
+            <div class="topic-footer">
+              <button class="topic-btn" data-action="explore" data-topic="keliling_busur">
+                <span>Eksplorasi Konsep</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            </div>
+          </article>
+
+          <!-- Topik 3: Luas Juring dan Tembereng -->
+          <article class="topic-card" data-category="sudut-luas" data-topic-id="luas_juring_tembereng">
+            <div class="topic-card-top">
+              <span class="topic-number">Topik 03</span>
+              <span class="topic-level-badge">Tingkat Menengah</span>
+            </div>
+            <div class="topic-diagram-box">
+              <svg viewBox="0 0 180 120" width="160" height="100" aria-label="Diagram Luas Juring dan Tembereng">
+                <circle cx="90" cy="60" r="45" fill="none" stroke="currentColor" stroke-opacity="0.2" stroke-width="2"/>
+                <!-- Juring -->
+                <path d="M 90 60 L 135 60 A 45 45 0 0 0 90 15 Z" fill="#8B5CF6" fill-opacity="0.3" stroke="#8B5CF6" stroke-width="1.5"/>
+                <!-- Garis tali busur untuk tembereng -->
+                <line x1="135" y1="60" x2="90" y2="15" stroke="#EC4899" stroke-width="2"/>
+                <circle cx="90" cy="60" r="3" fill="#8B5CF6"/>
+                <text x="100" y="48" fill="#A78BFA" font-size="10" font-weight="700">Juring</text>
+              </svg>
+            </div>
+            <h3 class="topic-title">Luas Juring & Tembereng</h3>
+            <p class="topic-desc">Menghitung luas bidang juring dan selisih luas tembereng antara potongan juring dan bidang segitiga jari-jari.</p>
+            <div class="topic-formula-pill">L = (α/360°) × πr²</div>
+            <div class="topic-footer">
+              <button class="topic-btn" data-action="explore" data-topic="luas_juring_tembereng">
+                <span>Eksplorasi Konsep</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            </div>
+          </article>
+
+          <!-- Topik 4: Sudut Pusat dan Sudut Keliling -->
+          <article class="topic-card" data-category="sudut-luas" data-topic-id="sudut_pusat_keliling">
+            <div class="topic-card-top">
+              <span class="topic-number">Topik 04</span>
+              <span class="topic-level-badge">Tingkat Menengah</span>
+            </div>
+            <div class="topic-diagram-box">
+              <svg viewBox="0 0 180 120" width="160" height="100" aria-label="Diagram Sudut Pusat dan Sudut Keliling">
+                <circle cx="90" cy="60" r="45" fill="none" stroke="currentColor" stroke-opacity="0.2" stroke-width="2"/>
+                <!-- Titik busur A dan B -->
+                <!-- Sudut pusat AOB -->
+                <line x1="58" y1="92" x2="90" y2="60" stroke="#F59E0B" stroke-width="2"/>
+                <line x1="122" y1="92" x2="90" y2="60" stroke="#F59E0B" stroke-width="2"/>
+                <!-- Sudut keliling ACB -->
+                <line x1="58" y1="92" x2="90" y2="15" stroke="#06B6D4" stroke-width="1.8"/>
+                <line x1="122" y1="92" x2="90" y2="15" stroke="#06B6D4" stroke-width="1.8"/>
+                <circle cx="90" cy="60" r="3" fill="#F59E0B"/>
+                <text x="82" y="75" fill="#F59E0B" font-size="10" font-weight="700">2α</text>
+                <text x="86" y="32" fill="#06B6D4" font-size="10" font-weight="700">α</text>
+              </svg>
+            </div>
+            <h3 class="topic-title">Sudut Pusat & Sudut Keliling</h3>
+            <p class="topic-desc">Teorema relasi sudut yang menghadap busur sama: sudut pusat bernilai dua kali lipat sudut keliling (∠Pusat = 2 × ∠Keliling).</p>
+            <div class="topic-formula-pill">∠Pusat = 2 × ∠Keliling</div>
+            <div class="topic-footer">
+              <button class="topic-btn" data-action="explore" data-topic="sudut_pusat_keliling">
+                <span>Eksplorasi Konsep</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            </div>
+          </article>
+
+          <!-- Topik 5: Garis Singgung Lingkaran -->
+          <article class="topic-card" data-category="garis-singgung" data-topic-id="garis_singgung">
+            <div class="topic-card-top">
+              <span class="topic-number">Topik 05</span>
+              <span class="topic-level-badge">Tingkat Menengah</span>
+            </div>
+            <div class="topic-diagram-box">
+              <svg viewBox="0 0 180 120" width="160" height="100" aria-label="Diagram Garis Singgung Lingkaran">
+                <circle cx="80" cy="60" r="38" fill="none" stroke="currentColor" stroke-opacity="0.2" stroke-width="2"/>
+                <circle cx="80" cy="60" r="3" fill="#8B5CF6"/>
+                <!-- Titik luar P -->
+                <circle cx="160" cy="60" r="3.5" fill="#06B6D4"/>
+                <text x="163" y="58" fill="#06B6D4" font-size="10" font-weight="700">P</text>
+                <!-- Jari-jari ke titik singgung -->
+                <line x1="80" y1="60" x2="105" y2="31" stroke="#F59E0B" stroke-width="1.8"/>
+                <!-- Garis singgung dari P ke titik singgung -->
+                <line x1="160" y1="60" x2="105" y2="31" stroke="#EC4899" stroke-width="2.2"/>
+                <!-- Garis pusat OP -->
+                <line x1="80" y1="60" x2="160" y2="60" stroke="#64748B" stroke-dasharray="2 2"/>
+                <text x="125" y="38" fill="#EC4899" font-size="10" font-weight="700">d</text>
+              </svg>
+            </div>
+            <h3 class="topic-title">Garis Singgung Lingkaran</h3>
+            <p class="topic-desc">Sifat garis singgung yang tegak lurus dengan jari-jari lingkaran di titik singgung serta penerapan teorema Pythagoras.</p>
+            <div class="topic-formula-pill">d = √(p² - r²)</div>
+            <div class="topic-footer">
+              <button class="topic-btn" data-action="explore" data-topic="garis_singgung">
+                <span>Eksplorasi Konsep</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            </div>
+          </article>
+
+          <!-- Topik 6: Garis Singgung Persekutuan Luar (GSPL) -->
+          <article class="topic-card" data-category="garis-singgung" data-topic-id="gspl">
+            <div class="topic-card-top">
+              <span class="topic-number">Topik 06</span>
+              <span class="topic-level-badge">Tingkat Lanjutan</span>
+            </div>
+            <div class="topic-diagram-box">
+              <svg viewBox="0 0 180 120" width="160" height="100" aria-label="Diagram GSPL">
+                <!-- Lingkaran 1 (Besar) -->
+                <circle cx="55" cy="65" r="35" fill="none" stroke="currentColor" stroke-opacity="0.2" stroke-width="2"/>
+                <!-- Lingkaran 2 (Kecil) -->
+                <circle cx="140" cy="65" r="20" fill="none" stroke="currentColor" stroke-opacity="0.2" stroke-width="2"/>
+                <!-- Garis Singgung Luar Atas -->
+                <line x1="55" y1="30" x2="140" y2="45" stroke="#10B981" stroke-width="2.5"/>
+                <!-- Garis Pusat -->
+                <line x1="55" y1="65" x2="140" y2="65" stroke="#64748B" stroke-dasharray="2 2"/>
+                <text x="90" y="32" fill="#10B981" font-size="10" font-weight="700">GSPL</text>
+              </svg>
+            </div>
+            <h3 class="topic-title">Garis Singgung Persekutuan Luar</h3>
+            <p class="topic-desc">Menghitung panjang garis singgung yang menghubungkan sisi luar dua lingkaran terpisah dengan jari-jari R dan r.</p>
+            <div class="topic-formula-pill">d = √(p² - (R - r)²)</div>
+            <div class="topic-footer">
+              <button class="topic-btn" data-action="explore" data-topic="gspl">
+                <span>Eksplorasi Konsep</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            </div>
+          </article>
+
+          <!-- Topik 7: Garis Singgung Persekutuan Dalam (GSPD) -->
+          <article class="topic-card" data-category="garis-singgung" data-topic-id="gspd">
+            <div class="topic-card-top">
+              <span class="topic-number">Topik 07</span>
+              <span class="topic-level-badge">Tingkat Lanjutan</span>
+            </div>
+            <div class="topic-diagram-box">
+              <svg viewBox="0 0 180 120" width="160" height="100" aria-label="Diagram GSPD">
+                <!-- Lingkaran 1 -->
+                <circle cx="50" cy="65" r="30" fill="none" stroke="currentColor" stroke-opacity="0.2" stroke-width="2"/>
+                <!-- Lingkaran 2 -->
+                <circle cx="135" cy="65" r="20" fill="none" stroke="currentColor" stroke-opacity="0.2" stroke-width="2"/>
+                <!-- Garis Singgung Menyilang Dalam -->
+                <line x1="50" y1="35" x2="135" y2="85" stroke="#F59E0B" stroke-width="2.5"/>
+                <!-- Garis Pusat -->
+                <line x1="50" y1="65" x2="135" y2="65" stroke="#64748B" stroke-dasharray="2 2"/>
+                <text x="92" y="55" fill="#F59E0B" font-size="10" font-weight="700">GSPD</text>
+              </svg>
+            </div>
+            <h3 class="topic-title">Garis Singgung Persekutuan Dalam</h3>
+            <p class="topic-desc">Menghitung ruas garis singgung menyilang di antara dua lingkaran dengan menjumlahkan kedua jari-jarinya (R + r).</p>
+            <div class="topic-formula-pill">d = √(p² - (R + r)²)</div>
+            <div class="topic-footer">
+              <button class="topic-btn" data-action="explore" data-topic="gspd">
+                <span>Eksplorasi Konsep</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            </div>
+          </article>
+
+          <!-- Topik 8: Soal Aplikasi dan Latihan Campuran -->
+          <article class="topic-card" data-category="dasar" data-topic-id="aplikasi_campuran">
+            <div class="topic-card-top">
+              <span class="topic-number">Topik 08</span>
+              <span class="topic-level-badge">Tantangan Master</span>
+            </div>
+            <div class="topic-diagram-box">
+              <svg viewBox="0 0 180 120" width="160" height="100" aria-label="Diagram Aplikasi Roda Gigi">
+                <!-- Roda Gigi 1 -->
+                <circle cx="55" cy="60" r="30" fill="none" stroke="#8B5CF6" stroke-width="2"/>
+                <!-- Roda Gigi 2 -->
+                <circle cx="130" cy="60" r="18" fill="none" stroke="#06B6D4" stroke-width="2"/>
+                <!-- Rantai Sabuk Penghubung -->
+                <line x1="55" y1="30" x2="130" y2="42" stroke="currentColor" stroke-opacity="0.8" stroke-width="2"/>
+                <line x1="55" y1="90" x2="130" y2="78" stroke="currentColor" stroke-opacity="0.8" stroke-width="2"/>
+                <circle cx="55" cy="60" r="4" fill="#8B5CF6"/>
+                <circle cx="130" cy="60" r="3" fill="#06B6D4"/>
+                <text x="82" y="24" fill="#06B6D4" font-size="9" font-weight="700">Rantai Terbuka</text>
+              </svg>
+            </div>
+            <h3 class="topic-title">Aplikasi & Latihan Campuran</h3>
+            <p class="topic-desc">Penerapan konsep lingkaran pada dunia nyata seperti sistem rantai roda gigi, katrol, arsitektur, dan soal komprehensif.</p>
+            <div class="topic-formula-pill">Pemecahan Masalah Nyata</div>
+            <div class="topic-footer">
+              <button class="topic-btn" data-action="explore" data-topic="aplikasi_campuran">
+                <span>Eksplorasi Konsep</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CHALLENGES SECTION (CIRCLE QUEST GAME) -->
+    <section class="section" id="challenges">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">
+            <span class="badge-pill badge-pill-cyan">Game Edukasi Interaktif</span>
+          </div>
+          <h2 class="section-title">Mode Tantangan Circle Quest</h2>
+          <p class="section-subtitle">
+            Uji intuisi dan penguasaan konsep geometri lingkaran Anda. Jawab soal, raih poin XP, dan ukir namamu di Papan Peringkat Pelajar!
+          </p>
+        </div>
+
+        <div class="challenge-preview-box">
+          <!-- Daftar Mode Tantangan (Sidebar Info & Pintasan Mode) -->
+          <div class="quest-modes-list">
+            <div class="quest-mode-item" id="mode-item-journey" style="cursor: pointer;" title="Klik untuk mode Campuran">
+              <div class="quest-mode-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+              </div>
+              <div class="quest-mode-info">
+                <h4>Mode Bertahap (Quest Journey)</h4>
+                <p>Jalani petualangan level demi level dari Tingkat Dasar hingga Master dengan gabungan seluruh materi lingkaran.</p>
+              </div>
+            </div>
+
+            <div class="quest-mode-item" id="mode-item-speed" style="cursor: pointer;" title="Klik untuk mode Kilat 5 Soal">
+              <div class="quest-mode-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <div class="quest-mode-info">
+                <h4>Mode Latihan Cepat (Speed Run)</h4>
+                <p>Tantang kecepatan intuisi dan ketepatan perhitungan dalam 5 soal kilat untuk mengasah refleks rumus.</p>
+              </div>
+            </div>
+
+            <div class="quest-mode-item" id="mode-item-simulation" style="cursor: pointer;" title="Klik untuk mode Simulasi Ujian">
+              <div class="quest-mode-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+              </div>
+              <div class="quest-mode-info">
+                <h4>Simulasi Uji Pemahaman</h4>
+                <p>Latihan format penilaian sekolah dengan analisis rincian kelemahan konsep dan pembahasan rumus per butir soal.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ARENA GAME INTERAKTIF (3 SCREEN: LOBBY, PLAY, RESULTS) -->
+          <div class="challenge-arena-card" id="circle-quest-arena">
+
+            <!-- 1. LOBBY / SETUP SCREEN -->
+            <div class="cq-screen active" id="cq-lobby-screen">
+              <div class="cq-lobby-header">
+                <div class="cq-lobby-title">
+                  <span>🎯 Siap Memulai Tantangan?</span>
+                  <span class="badge-pill badge-pill-cyan">Fase F SMA</span>
+                </div>
+                <p class="cq-lobby-desc">
+                  Masukkan nama Anda dan sesuaikan materi serta tingkat kesulitan sebelum memulai quest.
+                </p>
+              </div>
+
+              <form id="cq-setup-form" onsubmit="return false;">
+                <div class="cq-form-group">
+                  <label for="cq-player-name" class="cq-form-label">Nama Pemain <span style="color: var(--color-danger); font-weight: 800;">*</span></label>
+                  <input type="text" id="cq-player-name" class="cq-input-text" placeholder="Ketik nama Anda (misal: Raditya, Zahra, Fajar...)" maxlength="24" required autocomplete="name">
+                  <div class="cq-name-error" id="cq-name-error">Harap masukkan nama pemain terlebih dahulu sebelum memulai quest.</div>
+                </div>
+
+                <div class="cq-form-group" style="margin-top: 10px;">
+                  <label for="cq-player-school" class="cq-form-label">Asal Sekolah / Kelas (Opsional)</label>
+                  <input type="text" id="cq-player-school" class="cq-input-text" placeholder="Contoh: SMAN 1 Jakarta / XI-Fase F" maxlength="50">
+                </div>
+
+                <div class="cq-form-row">
+                  <div class="cq-form-group">
+                    <label for="cq-select-topic" class="cq-form-label">Kategori Materi</label>
+                    <select id="cq-select-topic" class="cq-select">
+                      <option value="all">Semua Materi (Campuran)</option>
+                      <option value="unsur_lingkaran">Bab 1: Unsur-unsur Lingkaran</option>
+                      <option value="keliling_busur">Bab 2: Keliling & Busur</option>
+                      <option value="luas_juring_tembereng">Bab 3: Luas Juring & Tembereng</option>
+                      <option value="sudut_pusat_keliling">Bab 4: Sudut Pusat & Keliling</option>
+                      <option value="garis_singgung">Bab 5: Garis Singgung</option>
+                      <option value="gspl">Bab 6: GSPL</option>
+                      <option value="gspd">Bab 7: GSPD</option>
+                      <option value="aplikasi_campuran">Bab 8: Aplikasi Rantai</option>
+                    </select>
+                  </div>
+
+                  <div class="cq-form-group">
+                    <label for="cq-select-difficulty" class="cq-form-label">Tingkat Kesulitan</label>
+                    <select id="cq-select-difficulty" class="cq-select">
+                      <option value="all">Campuran (Semua Tingkat)</option>
+                      <option value="mudah">Dasar (+100 XP)</option>
+                      <option value="sedang">Menengah (+150 XP)</option>
+                      <option value="sulit">Lanjutan / Master (+200 XP)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="cq-form-group">
+                  <label for="cq-select-count" class="cq-form-label">Jumlah Soal</label>
+                  <select id="cq-select-count" class="cq-select">
+                    <option value="5">5 Soal (Sesi Cepat • Rekomendasi)</option>
+                    <option value="8">8 Soal (Tuntas Kurikulum)</option>
+                    <option value="10">10 Soal (Uji Kompetensi Penuh)</option>
+                  </select>
+                </div>
+
+                <button type="button" class="btn btn-primary" id="cq-btn-start" style="width: 100%; justify-content: center; margin-top: 10px;">
+                  <span>Mulai Tantangan Circle Quest</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                </button>
+              </form>
+            </div>
+
+            <!-- 2. GAMEPLAY ACTIVE SCREEN -->
+            <div class="cq-screen" id="cq-play-screen">
+              <!-- HUD Atas -->
+              <div class="cq-game-hud">
+                <div class="cq-player-pill">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                  <span id="cq-hud-player">Pemain</span>
+                </div>
+
+                <div class="cq-hud-metrics">
+                  <span class="cq-timer-pill" id="cq-hud-timer">⏱️ 00:00</span>
+                  <span class="cq-score-pill" id="cq-hud-score">0 XP</span>
+                </div>
+              </div>
+
+              <!-- Progress Bar -->
+              <div class="cq-progress-track">
+                <div class="cq-progress-fill" id="cq-progress-fill" style="width: 20%;"></div>
+              </div>
+
+              <!-- Header Info Soal -->
+              <div class="cq-question-header">
+                <div>
+                  <span style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted);">
+                    Soal <strong id="cq-cur-num" style="color: var(--text-primary);">1</strong> dari <span id="cq-tot-num">5</span>
+                  </span>
+                  <span style="margin: 0 6px; color: var(--border-medium);">•</span>
+                  <span class="cq-topic-badge" id="cq-hud-topic">Keliling Lingkaran</span>
+                </div>
+                <div style="display: flex; gap: 6px; align-items: center;">
+                  <span class="cq-diff-badge cq-diff-mudah" id="cq-hud-diff">Tingkat Dasar</span>
+                  <span class="badge-pill" id="cq-hud-q-xp" style="font-size: 0.72rem;">+100 XP</span>
+                </div>
+              </div>
+
+              <!-- Teks Pertanyaan -->
+              <p class="quiz-question-text" id="cq-text-question">
+                Pertanyaan akan dimuat di sini...
+              </p>
+
+              <!-- Wadah Pilihan Ganda -->
+              <div class="quiz-options-group" id="cq-options-container">
+                <!-- Diisi secara dinamis -->
+              </div>
+
+              <!-- Wadah Isian Numerik (Jika tipe numerik) -->
+              <div id="cq-numeric-container" style="display: none; margin-bottom: 16px;">
+                <label for="cq-numeric-input" style="display: block; font-size: 0.82rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 6px;">
+                  Masukkan Angka Jawaban:
+                </label>
+                <div class="numeric-answer-box">
+                  <div class="numeric-input-group">
+                    <input type="text" id="cq-numeric-input" class="numeric-input" placeholder="Ketik nilai angka..." inputmode="decimal">
+                    <span class="numeric-unit-label" id="cq-numeric-unit">cm</span>
+                  </div>
+                  <button type="button" class="btn btn-primary" id="cq-btn-submit-numeric" style="padding: 10px 18px; min-height: 44px;">
+                    <span>Kirim</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Kotak Umpan Balik & Pembahasan -->
+              <div class="quiz-feedback-box" id="cq-feedback-box">
+                <!-- Diisi setelah pemain menjawab -->
+              </div>
+
+              <!-- Tombol Aksi Soal Berikutnya -->
+              <div id="cq-action-row" style="margin-top: 18px; display: none; justify-content: flex-end;">
+                <button type="button" class="btn btn-primary" id="cq-btn-next-question">
+                  <span id="cq-next-btn-text">Soal Berikutnya</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- 3. RESULTS SCREEN -->
+            <div class="cq-screen" id="cq-results-screen">
+              <div class="cq-results-hero">
+                <span class="cq-trophy-icon" aria-hidden="true">🏆</span>
+                <h3 style="font-family: var(--font-display); font-size: 1.45rem; font-weight: 800; color: var(--text-primary); margin-bottom: 4px;">
+                  Selamat, <span id="cq-res-player">Pemain</span>!
+                </h3>
+                <span class="badge-pill badge-pill-cyan" id="cq-res-title" style="font-size: 0.85rem; padding: 4px 14px;">
+                  Grandmaster Geometri
+                </span>
+
+                <div style="margin-top: 14px;">
+                  <div class="cq-final-score-value" id="cq-res-score">500 XP</div>
+                  <div class="cq-final-score-label">Total Skor Tantangan Diraih</div>
+                </div>
+              </div>
+
+              <!-- Ringkasan Statistik -->
+              <div class="cq-stats-summary-grid">
+                <div class="cq-stat-card">
+                  <span class="cq-stat-num" id="cq-stat-correct" style="color: var(--color-success);">0</span>
+                  <span class="cq-stat-lbl">Jawaban Benar</span>
+                </div>
+                <div class="cq-stat-card">
+                  <span class="cq-stat-num" id="cq-stat-wrong" style="color: var(--color-danger);">0</span>
+                  <span class="cq-stat-lbl">Belum Tepat</span>
+                </div>
+                <div class="cq-stat-card">
+                  <span class="cq-stat-num" id="cq-stat-accuracy" style="color: var(--color-accent);">0%</span>
+                  <span class="cq-stat-lbl">Akurasi</span>
+                </div>
+                <div class="cq-stat-card">
+                  <span class="cq-stat-num" id="cq-stat-time">00:00</span>
+                  <span class="cq-stat-lbl">Durasi</span>
+                </div>
+              </div>
+
+              <!-- Review Butir Soal -->
+              <div class="cq-review-drawer">
+                <div class="cq-review-title">Ringkasan Evaluasi Butir Soal:</div>
+                <div id="cq-review-list">
+                  <!-- Diisi secara dinamis -->
+                </div>
+              </div>
+
+              <!-- Status Penyimpanan Peringkat Server -->
+              <div id="cq-sync-status-box" class="cq-sync-status-box" style="margin-bottom: 18px; font-size: 0.82rem; text-align: center;">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 8px; color: var(--color-success);">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Hasil resmi terverifikasi server dan tersimpan di Papan Peringkat Bersama.</span>
+                </div>
+              </div>
+
+              <!-- Tombol Aksi Hasil -->
+              <div class="cq-results-actions">
+                <button type="button" class="btn btn-primary" id="cq-btn-play-again">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+                  <span>Main Lagi</span>
+                </button>
+                <a href="#leaderboard" class="btn btn-secondary" id="cq-btn-go-leaderboard">
+                  <span>Lihat Peringkat</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg>
+                </a>
+                <a href="materi.html" class="btn btn-secondary">
+                  <span>Pelajari Materi</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEADERBOARD SECTION -->
+    <section class="section" id="leaderboard">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">
+            <span class="badge-pill">Prestasi Pelajar</span>
+          </div>
+          <h2 class="section-title">Papan Peringkat Pelajar</h2>
+          <p class="section-subtitle">
+            Papan skor pencapaian resmi tantangan Circle Quest secara global dan real-time dari seluruh pelajar.
+          </p>
+        </div>
+
+        <div class="leaderboard-container">
+          <!-- Status Sinkronisasi Supabase Leaderboard -->
+          <div class="sample-data-disclaimer" id="leaderboard-sync-banner" style="background: rgba(15, 23, 42, 0.6); border-color: var(--border-medium); justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span id="supabase-conn-indicator" class="status-indicator-dot online" aria-hidden="true"></span>
+              <span id="supabase-conn-label" style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">
+                Papan Peringkat Bersama (Supabase)
+              </span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <button id="btn-refresh-leaderboard" class="btn-text-subtle" title="Segarkan peringkat dari Supabase" style="font-size: 0.78rem;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+                <span>Segarkan Peringkat</span>
+              </button>
+              <button id="btn-open-supabase-config" class="btn-text-subtle" title="Pengaturan Koneksi Supabase" style="font-size: 0.78rem;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                <span>Konfigurasi Supabase</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Podium 3 Besar Dinamis -->
+          <div class="podium-grid" id="leaderboard-podium">
+            <!-- Diisi secara dinamis oleh js/app.js -->
+          </div>
+
+          <!-- Tabel Peringkat Tambahan Dinamis -->
+          <div class="leaderboard-table-wrapper">
+            <table class="leaderboard-table">
+              <thead>
+                <tr>
+                  <th scope="col">Rank</th>
+                  <th scope="col">Pelajar</th>
+                  <th scope="col">Kategori & Asal</th>
+                  <th scope="col">Gelar Prestasi</th>
+                  <th scope="col" style="text-align: right;">Total XP</th>
+                </tr>
+              </thead>
+              <tbody id="leaderboard-tbody">
+                <!-- Diisi secara dinamis oleh js/app.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================
+       MODAL DETAIL MATERI
+       ========================================== -->
+  <div class="modal-overlay" id="topic-modal" role="dialog" aria-modal="true" aria-labelledby="modal-topic-title">
+    <div class="modal-content">
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Tutup jendela penjelasan">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="modal-header">
+        <span class="badge-pill" id="modal-topic-category">Kategori Modul</span>
+        <h3 class="modal-title" id="modal-topic-title">Judul Modul</h3>
+      </div>
+
+      <div class="modal-diagram-container" id="modal-diagram-container">
+        <!-- SVG diagram akan dimasukkan dinamis -->
+      </div>
+
+      <div class="modal-section-title">Rumus Kunci</div>
+      <div class="modal-formula-box" id="modal-formula-box">
+        d = 2r
+      </div>
+
+      <div class="modal-section-title">Konsep & Teori Singkat</div>
+      <p class="modal-desc-text" id="modal-desc-text">
+        Penjelasan lengkap konsep matematika.
+      </p>
+
+      <div style="display: flex; justify-content: flex-end; gap: 12px; flex-wrap: wrap;">
+        <button class="btn btn-secondary" id="modal-btn-dismiss">Tutup</button>
+        <a href="materi.html?bab=1" id="modal-btn-open-full" class="btn btn-primary">
+          <span>Pelajari Bab Lengkap</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-link" style="margin-bottom: 8px;">
+            <div class="brand-logo-mark" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="12" r="9"></circle>
+                <circle cx="12" cy="12" r="2" fill="currentColor"></circle>
+                <path d="M12 12L18 6"></path>
+              </svg>
+            </div>
+            <div class="brand-text-group">
+              <span class="brand-name">MathVerse</span>
+              <span class="brand-mode-badge">Circle Quest</span>
+            </div>
+          </div>
+          <p class="footer-brand-desc">
+            Platform edukasi geometri lingkaran interaktif yang dirancang untuk membantu pelajar SMA memahami konsep matematika secara visual, intuitif, dan terstruktur.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Navigasi Modul</h4>
+          <ul class="footer-links">
+            <li><a href="#topics" class="footer-link">Unsur & Dasar Lingkaran</a></li>
+            <li><a href="#topics" class="footer-link">Busur, Juring & Tembereng</a></li>
+            <li><a href="#topics" class="footer-link">Sudut Pusat & Keliling</a></li>
+            <li><a href="#topics" class="footer-link">Garis Singgung (GSPL & GSPD)</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Informasi Proyek</h4>
+          <ul class="footer-links">
+            <li><span style="color: var(--text-muted);">Proyek: Penilaian Matematika SMA</span></li>
+            <li><span style="color: var(--text-muted);">Kurikulum: Fase F (Kelas XI)</span></li>
+            <li><span style="color: var(--text-muted);">Versi: v0.1.0 — Fondasi & UI Awal</span></li>
+            <li><a href="#hero" class="footer-link">Kembali ke Atas ↑</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 MathVerse — Circle Quest. Dibuat untuk Proyek Penilaian Pembelajaran Matematika.</span>
+        <span>HTML5 • CSS3 • JavaScript ES6+ (Pure / Vanilla)</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       MODAL KONFIGURASI SUPABASE (FRONTEND PUBLIC)
+       ========================================== -->
+  <div class="modal-overlay" id="supabase-modal" role="dialog" aria-modal="true" aria-labelledby="modal-supabase-title">
+    <div class="modal-content" style="max-width: 520px;">
+      <button class="modal-close-btn" id="modal-supabase-close" aria-label="Tutup jendela pengaturan">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="modal-header">
+        <span class="badge-pill badge-pill-cyan">Database Bersama</span>
+        <h3 class="modal-title" id="modal-supabase-title">Konfigurasi Supabase</h3>
+      </div>
+
+      <div style="padding: 0 4px 16px;">
+        <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 14px;">
+          Hubungkan MathVerse ke proyek Supabase Anda agar sesi permainan tervalidasi di server dan skor muncul pada <strong>Papan Peringkat Bersama</strong>.
+        </p>
+
+        <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: var(--radius-sm); padding: 10px 12px; margin-bottom: 16px; font-size: 0.78rem; color: #F59E0B; line-height: 1.4;">
+          <strong>🔒 Aturan Keamanan Frontend:</strong> Hanya masukkan <em>Project URL</em> dan <em>Public Anon Key</em>. Jangan pernah memasukkan kunci rahasia <code>service_role</code> di browser.
+        </div>
+
+        <form id="supabase-config-form" onsubmit="return false;">
+          <div class="cq-form-group" style="margin-bottom: 12px;">
+            <label for="cfg-supabase-url" class="cq-form-label">Supabase Project URL</label>
+            <input type="url" id="cfg-supabase-url" class="cq-input-text" placeholder="https://xxxxxxxxxxxxxxxxxxxx.supabase.co" required>
+          </div>
+
+          <div class="cq-form-group" style="margin-bottom: 16px;">
+            <label for="cfg-supabase-key" class="cq-form-label">Supabase Public Anon Key</label>
+            <textarea id="cfg-supabase-key" class="cq-input-text" rows="3" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." style="font-family: var(--font-mono); font-size: 0.78rem; resize: vertical;" required></textarea>
+          </div>
+
+          <div id="cfg-supabase-status" style="display: none; padding: 10px; border-radius: var(--radius-sm); font-size: 0.8rem; margin-bottom: 14px;"></div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 8px;">
+            <button type="button" class="btn btn-secondary" id="btn-supabase-modal-cancel">Batal</button>
+            <button type="button" class="btn btn-primary" id="btn-save-supabase-config">
+              <span>Tes & Simpan Konfigurasi</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Supabase JS Client CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Scripts Modular MathVerse -->
+  <script src="js/supabase-config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/geometry.js"></script>
+  <script src="js/questions.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
