@@ -13,11 +13,9 @@
 
 const MATHVERSE_SUPABASE_DEFAULT_CONFIG = {
   // Masukkan Supabase Project URL Anda jika ingin disetel statis
-  // Contoh: 'https://gcofhrgkyjdbpcnxdrck.supabase.co'
   url: 'https://gcofhrgkyjdbpcnxdrck.supabase.co',
 
   // Masukkan Supabase Public Anon Key Anda jika ingin disetel statis
-  // Contoh: 'sb_publishable_7CN78fcY3DgMQiVj1Ac7ag_piWxu7FC'
   anonKey: 'sb_publishable_7CN78fcY3DgMQiVj1Ac7ag_piWxu7FC'
 };
 
