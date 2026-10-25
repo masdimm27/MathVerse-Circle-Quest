@@ -14,11 +14,11 @@
 const MATHVERSE_SUPABASE_DEFAULT_CONFIG = {
   // Masukkan Supabase Project URL Anda jika ingin disetel statis
   // Contoh: 'https://xyzcompany.supabase.co'
-  url: '',
+  url: 'https://gcofhrgkyjdbpcnxdrck.supabase.co',
 
   // Masukkan Supabase Public Anon Key Anda jika ingin disetel statis
   // Contoh: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'
-  anonKey: ''
+  anonKey: 'sb_publishable_7CN78fcY3DgMQiVj1Ac7ag_piWxu7FC'
 };
 
 // Pasang ke window global agar dapat diakses oleh modul lain
