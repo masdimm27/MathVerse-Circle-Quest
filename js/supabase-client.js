@@ -264,6 +264,36 @@ const MathVerseSupabase = (() => {
   };
 
   /**
+   * Mengambil data kurikulum topik pembelajaran dari Supabase (jika tersedia)
+   */
+  const getTopics = async () => {
+    const client = initClient();
+    if (!client) {
+      return { success: false, data: [], error: 'Klien Supabase belum terkonfigurasi.' };
+    }
+
+    try {
+      const { data, error } = await client
+        .from('topics')
+        .select('*')
+        .order('chapter_number', { ascending: true });
+
+      if (error) {
+        console.warn('MathVerse Supabase getTopics warning:', error);
+        return { success: false, data: [], error: error.message };
+      }
+
+      return {
+        success: true,
+        data: Array.isArray(data) ? data : []
+      };
+    } catch (err) {
+      console.warn('Network exception in getTopics:', err);
+      return { success: false, data: [], error: err.message };
+    }
+  };
+
+  /**
    * Menguji koneksi aktif ke Supabase
    */
   const testConnection = async () => {
@@ -286,6 +316,7 @@ const MathVerseSupabase = (() => {
     startGameSession,
     submitGameSession,
     getLeaderboard,
+    getTopics,
     testConnection
   };
 })();

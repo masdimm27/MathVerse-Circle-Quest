@@ -20,6 +20,33 @@
 
   <!-- Stylesheet Utama -->
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- MathJax 3 Engine Configuration for LaTeX Rendering -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+        ignoreHtmlClass: 'tex2jax_ignore',
+        processHtmlClass: 'tex2jax_process'
+      },
+      startup: {
+        pageReady: () => {
+          return MathJax.startup.defaultPageReady().then(() => {
+            if (typeof window.triggerMathTypeset === 'function') {
+              window.triggerMathTypeset();
+            }
+          });
+        }
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body class="learning-module-page">
   <!-- Aksesibilitas: Skip Link ke Konten Pembelajaran -->
@@ -228,7 +255,12 @@
     </div>
   </footer>
 
-  <!-- Scripts Modular -->
+  <!-- Supabase JS Client CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Scripts Modular MathVerse -->
+  <script src="js/supabase-config.js"></script>
+  <script src="js/supabase-client.js"></script>
   <script src="js/geometry.js"></script>
   <script src="js/questions.js"></script>
   <script src="js/materi.js"></script>

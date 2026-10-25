@@ -726,6 +726,112 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   /* ==========================================================================
+     5B. SISTEM RENDERING NOTASI MATEMATIKA (MATHJAX 3 INTEGRATION & QUEUE)
+     ========================================================================== */
+  let mathJaxQueue = Promise.resolve();
+
+  /**
+   * Memastikan ekspresi LaTeX memiliki delimiter yang valid untuk MathJax.
+   * Jika string belum diapit $...$, $$...$$, \(...\), atau \[...\],
+   * bungkus dengan delimiter yang sesuai (default: display math \[...\]).
+   */
+  const ensureMathDelimiters = (str, isDisplay = true) => {
+    if (!str || typeof str !== 'string') return '';
+    const trimmed = str.trim();
+    if (
+      (trimmed.startsWith('$$') && trimmed.endsWith('$$')) ||
+      (trimmed.startsWith('\\[') && trimmed.endsWith('\\]')) ||
+      (trimmed.startsWith('\\(') && trimmed.endsWith('\\)')) ||
+      (trimmed.startsWith('$') && trimmed.endsWith('$'))
+    ) {
+      return trimmed;
+    }
+    return isDisplay ? `\\[${trimmed}\\]` : `\\(${trimmed}\\)`;
+  };
+
+  /**
+   * Format simbol untuk rendering rapi:
+   * Mengonversi simbol matematika, konstanta pi/alfa, subscript, dan sudut
+   * ke notasi LaTeX inline agar dirender oleh MathJax secara serasi.
+   */
+  const formatSymbolForDisplay = (sym) => {
+    if (!sym || typeof sym !== 'string') return '';
+    const trimmed = sym.trim();
+    if (trimmed.startsWith('$') || trimmed.startsWith('\\(')) return trimmed;
+    if (trimmed === 'π') return '\\(\\pi\\)';
+    if (trimmed === 'α') return '\\(\\alpha\\)';
+    if (trimmed.startsWith('∠')) {
+      const angleTarget = trimmed.substring(1);
+      return `\\(\\angle\\text{${angleTarget}}\\)`;
+    }
+    if (trimmed === 'L_Δ') {
+      return '\\(L_{\\Delta}\\)';
+    }
+    if (/[_^{}]/.test(trimmed)) {
+      const safeLatex = trimmed.replace(/_([a-zA-Z0-9]+)/g, (match, p1) => `_{\\text{${p1}}}`);
+      return `\\(${safeLatex}\\)`;
+    }
+    if (/^[a-zA-Z]{1,2}$/.test(trimmed)) {
+      return `\\(${trimmed}\\)`;
+    }
+    return trimmed;
+  };
+
+  /**
+   * Menjalankan typesetting MathJax 3 dengan aman:
+   * - Menghindari error concurency "MathJax is already typesetting" via Promise queue
+   * - Mendukung pemanggilan elemen tunggal, array elemen, atau seluruh kontainer
+   * - Menangani fallback jika MathJax sedang dimuat dari CDN
+   */
+  const typesetMath = (target = null) => {
+    if (typeof window === 'undefined') return Promise.resolve();
+
+    if (!window.MathJax || !window.MathJax.typesetPromise) {
+      // Jika MathJax belum siap, MathJax.startup.pageReady akan memicu typesetting
+      return Promise.resolve();
+    }
+
+    let targets = undefined;
+    if (target) {
+      if (Array.isArray(target)) {
+        targets = target.filter(Boolean);
+      } else if (target instanceof Element) {
+        targets = [target];
+      } else if (typeof target === 'string') {
+        const el = document.querySelector(target);
+        if (el) targets = [el];
+      }
+    }
+
+    mathJaxQueue = mathJaxQueue
+      .then(() => {
+        if (window.MathJax && window.MathJax.typesetClear && targets && targets.length > 0) {
+          try {
+            window.MathJax.typesetClear(targets);
+          } catch (e) {
+            // Abaikan kegagalan clear parsial
+          }
+        }
+        if (window.MathJax && window.MathJax.typesetPromise) {
+          return window.MathJax.typesetPromise(targets);
+        }
+      })
+      .catch((err) => {
+        console.warn('MathJax typesetting notification:', err);
+      });
+
+    return mathJaxQueue;
+  };
+
+  // Expose ke window agar MathJax startup hook di materi.html dapat memicu typesetting awal
+  window.triggerMathTypeset = () => {
+    const container = document.getElementById('chapter-content-container') || document.getElementById('learning-main');
+    if (container) {
+      typesetMath(container);
+    }
+  };
+
+  /* ==========================================================================
      6. RENDER SIDEBAR & KONTEN BAB
      ========================================================================== */
   const sidebarList = document.getElementById('sidebar-chapter-list');
@@ -848,7 +954,7 @@ document.addEventListener('DOMContentLoaded', () => {
       f.symbols.forEach((s) => {
         symbolsList += `
           <div class="symbol-pill">
-            <span class="symbol-code">${s.sym}</span>
+            <span class="symbol-code">${formatSymbolForDisplay(s.sym)}</span>
             <span class="symbol-desc">${s.name} ${s.unit !== '-' ? `<em>(${s.unit})</em>` : ''}</span>
           </div>
         `;
@@ -857,7 +963,7 @@ document.addEventListener('DOMContentLoaded', () => {
       formulasHtml += `
         <div class="formula-box-card">
           <div class="formula-title">${f.name}</div>
-          <div class="formula-expression">${f.formula}</div>
+          <div class="formula-expression">${ensureMathDelimiters(f.formula, true)}</div>
           <div class="symbols-breakdown-grid">
             ${symbolsList}
           </div>
@@ -1026,6 +1132,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initChapterInteractions(ch);
     updateCompletionButtonState(ch.id);
 
+    // Typeset seluruh konten matematika pada bab yang baru dimuat
+    typesetMath(mainContentArea);
+
     // Listener Tombol Selesai
     const btnTop = document.getElementById('btn-toggle-complete');
     const btnBottom = document.getElementById('btn-complete-bottom');
@@ -1049,6 +1158,9 @@ document.addEventListener('DOMContentLoaded', () => {
         btnToggleSol.querySelector('span').textContent = !isExpanded 
           ? 'Sembunyikan Pembahasan' 
           : 'Tampilkan Pembahasan';
+        if (!isExpanded) {
+          typesetMath(solutionDrawer);
+        }
       });
     }
 
@@ -1076,6 +1188,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <strong>${isCorrect ? '✓ Jawaban Anda Benar!' : '✗ Jawaban Belum Tepat'}</strong>
             <p>${ch.practice.explanation}</p>
           `;
+          typesetMath(feedbackAlert);
         }
       });
     });
@@ -1272,6 +1385,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <span class="stats-value-text">${info.desc}</span>
         </div>
       `;
+      typesetMath(stats);
     };
 
     controls.querySelectorAll('.elem-btn').forEach(btn => {
@@ -2032,12 +2146,50 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   /* ==========================================================================
-     9. INISIALISASI AWAL HALAMAN MATERI
+     9. INISIALISASI AWAL HALAMAN MATERI & SINKRONISASI SUPABASE
      ========================================================================== */
+  const syncCurriculumWithSupabase = async () => {
+    if (typeof window === 'undefined' || !window.MathVerseSupabase || !window.MathVerseSupabase.getTopics) {
+      return;
+    }
+
+    try {
+      const res = await window.MathVerseSupabase.getTopics();
+      if (res && res.success && Array.isArray(res.data) && res.data.length > 0) {
+        let hasChanges = false;
+        res.data.forEach((topic) => {
+          const ch = chaptersData.find(c => c.id === topic.chapter_number || c.slug === topic.id);
+          if (ch) {
+            if (topic.title && topic.title !== ch.title) {
+              ch.title = topic.title;
+              hasChanges = true;
+            }
+            if (topic.category && topic.category !== ch.category) {
+              ch.category = topic.category;
+              hasChanges = true;
+            }
+            if (topic.formula_summary) {
+              ch.formulaSummary = topic.formula_summary;
+            }
+          }
+        });
+
+        if (hasChanges) {
+          const currentBab = getCurrentChapterFromUrl();
+          renderSidebar();
+          renderChapterContent(currentBab);
+        }
+      }
+    } catch (err) {
+      console.info('Sinkronisasi kurikulum dengan Supabase dilewati:', err.message || err);
+    }
+  };
+
   const initialBab = getCurrentChapterFromUrl();
   renderSidebar();
   renderChapterContent(initialBab);
   updateProgressDisplay();
+  syncCurriculumWithSupabase();
 
   // Dengarkan event popstate (tombol back/forward browser)
   window.addEventListener('popstate', () => {
